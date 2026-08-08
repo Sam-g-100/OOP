@@ -1,1 +1,68 @@
 
+class Complex:
+    # Default constructor
+    def __init__(self, real=0, imag=0):
+        self.real = real
+        self.imag = imag
+
+    # Overload + operator
+    def __add__(self, c2):
+        return Complex(
+            self.real + c2.real,
+            self.imag + c2.imag
+        )
+
+    # Overload * operator
+    def __mul__(self, c2):
+        return Complex(
+            (self.real * c2.real) - (self.imag * c2.imag),
+            (self.real * c2.imag) + (self.imag * c2.real)
+        )
+
+    # Overload << equivalent for printing
+    def __str__(self):
+        return f"{self.real}+{self.imag}i"
+
+
+# Main program
+c1 = Complex()
+c2 = Complex()
+c3 = Complex()
+
+while True:
+    print("\n1. Read")
+    print("2. Add")
+    print("3. Multiply")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        print("\nEnter first complex number real & imag part:")
+        real = int(input("Real: "))
+        imag = int(input("Imaginary: "))
+        c1 = Complex(real, imag)
+
+        print("\nEnter second complex number real & imag part:")
+        real = int(input("Real: "))
+        imag = int(input("Imaginary: "))
+        c2 = Complex(real, imag)
+
+    elif ch == 2:
+        c3 = c1 + c2
+        print("\nComplex no.1 =", c1)
+        print("Complex no.2 =", c2)
+        print("Sum =", c3)
+
+    elif ch == 3:
+        c3 = c1 * c2
+        print("\nComplex no.1 =", c1)
+        print("Complex no.2 =", c2)
+        print("Multiplication =", c3)
+
+    else:
+        print("Wrong choice")
+
+    choice = input("\nDo you want to continue (y/n): ")
+
+    if choice.lower() != 'y':
+        break
