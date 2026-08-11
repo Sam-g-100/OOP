@@ -1,0 +1,86 @@
+
+class Student:
+
+    # Static variable
+    count = 0
+
+    # Constructor / Default Constructor
+    def __init__(self, name="Unknown", roll=0, cls="SE",
+                 div="A", dob="01/01/2000",
+                 blood="O+", address="Pune",
+                 phone="0000000000", license_no="NA"):
+
+        self.name = name
+        self.roll = roll
+        self.cls = cls
+        self.div = div
+        self.dob = dob
+        self.blood = blood
+        self.address = address
+        self.phone = phone
+        self.license_no = license_no
+
+        Student.count += 1
+
+    # Input function
+    def read(self):
+        try:
+            self.name = input("Enter name: ")
+            self.roll = int(input("Enter roll number: "))
+            self.cls = input("Enter class: ")
+            self.div = input("Enter division: ")
+            self.dob = input("Enter DOB: ")
+            self.blood = input("Enter blood group: ")
+            self.address = input("Enter address: ")
+            self.phone = input("Enter telephone number: ")
+            self.license_no = input("Enter driving license no: ")
+
+        except ValueError:
+            print("Invalid input!")
+
+    # Display function
+    def display(self):
+        print("\n--- Student Information ---")
+        print("Name:", self.name)
+        print("Roll No:", self.roll)
+        print("Class:", self.cls)
+        print("Division:", self.div)
+        print("DOB:", self.dob)
+        print("Blood Group:", self.blood)
+        print("Address:", self.address)
+        print("Telephone:", self.phone)
+        print("Driving License:", self.license_no)
+
+    # Static function
+    @staticmethod
+    def display_count():
+        print("\nTotal Students:", Student.count)
+
+    # Destructor
+    def __del__(self):
+        print("Object destroyed:", self.name)
+
+
+# Main program
+
+try:
+    n = int(input("Enter number of students: "))
+
+    students = []
+
+    for i in range(n):
+        print("\nEnter details of student", i + 1)
+
+        s = Student()
+        s.read()
+        students.append(s)
+
+    print("\n===== STUDENT DATABASE =====")
+
+    for s in students:
+        s.display()
+
+    Student.display_count()
+
+except ValueError:
+    print("Invalid input!")
